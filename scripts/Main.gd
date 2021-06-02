@@ -1,16 +1,19 @@
 extends Node2D
 
+const num_of_rocks = 10
+
 onready var rockScene = preload("res://scenes/Rock.tscn")
 onready var playerScene = preload("res://scenes/Player.tscn")
 
 func _ready():
+	randomize()
 	build_rocks()
-
-func build_rocks():
-	for _i in range(0, 5):
-		build_rock(rockScene)
 		
 	build_player()
+
+func build_rocks():
+	for i in range(0, num_of_rocks):
+		build_rock(rockScene)
 		
 func build_player():
 	var x = randi() % 1024
