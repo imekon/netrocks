@@ -6,6 +6,7 @@ var networkPeer = NetworkedMultiplayerENet.new()
 var peers = []
 var levelScene = preload("res://scenes/Main.tscn")
 var playerScene = preload("res://scenes/Player.tscn")
+
 var levelInstance
 
 signal levelLoaded
@@ -62,7 +63,7 @@ func create_player(peerId):
 	player.set_network_master(peerId)
 	player.name = String(peerId)
 	player.position = Vector2(x, y)
-	player.rotation_angle = randi() % 360
+	# player.rotation_degrees = float(randi() % 360)
 	levelInstance.add_child(player)
 	return player
 

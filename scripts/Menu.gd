@@ -6,6 +6,9 @@ onready var join = $Panel/Join
 onready var joinAddress = $Panel/Join/Address
 onready var joinPort = $Panel/Join/Port
 
+func _ready():
+	randomize()
+
 func host_pressed():
 	var port = int(hostPort.text)
 	Global.create_server(port)
