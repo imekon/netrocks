@@ -7,6 +7,9 @@ var thrust
 var velocity
 
 func _ready():
+	rset_config("rotation", MultiplayerAPI.RPC_MODE_PUPPET)
+	rset_config("position", MultiplayerAPI.RPC_MODE_PUPPET)
+
 	thrust = randi() % RANGE_THRUST + BASE_THRUST
 	var angle = randi() % 360
 	rotation_degrees = angle
@@ -22,3 +25,11 @@ func _physics_process(delta):
 	if position.x > 1024: position.x = 0
 	if position.y < 0: position.y = 600
 	if position.y > 600: position.y = 0
+	
+	if(is_network_master()):
+		_synchronize()
+		
+func _synchronize():
+	rset("position", position)
+	rset("rotation", rotation)
+

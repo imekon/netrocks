@@ -61,7 +61,7 @@ func create_player(peerId):
 	var y = randi() % 600
 	var player = playerScene.instance()
 	player.set_network_master(peerId)
-	player.name = String(peerId)
+	# player.name = String(peerId)
 	player.position = Vector2(x, y)
 	# player.rotation_degrees = float(randi() % 360)
 	levelInstance.add_child(player)
