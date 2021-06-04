@@ -1,6 +1,6 @@
 extends Node2D
 
-const num_of_rocks = 10
+const num_of_rocks = 20
 
 onready var rockScene = preload("res://scenes/Rock.tscn")
 onready var playerScene = preload("res://scenes/Player.tscn")
