@@ -39,10 +39,14 @@ func client_setup_after_load():
 	get_tree().network_peer = networkPeer
 
 func peer_connected(peerId):
+	# print("peer_connected")
+	# print(peerId)
 	peers.append(peerId)
 	create_player(peerId)
 
 func peer_disconnected(peerId):
+	# print("peer_disconnected")
+	# print(peerId)
 	peers.remove(peers.find(peerId))
 	destroy_player(peerId)
 
@@ -61,11 +65,12 @@ func create_player(peerId):
 	var y = randi() % 600
 	var player = playerScene.instance()
 	player.set_network_master(peerId)
-	# player.name = String(peerId)
+	player.name = String(peerId)
 	player.position = Vector2(x, y)
 	# player.rotation_degrees = float(randi() % 360)
 	levelInstance.add_child(player)
 	return player
 
 func destroy_player(peerId):
-	levelInstance.remove_node(levelInstance.get_node(String(peerId)))
+	var player = levelInstance.get_node(String(peerId))
+	player.queue_free()
